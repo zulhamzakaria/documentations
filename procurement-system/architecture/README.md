@@ -13,10 +13,12 @@
 - Well-defined isolated modules that wont break the cohesiveness while keeping tight coupling at bay. 
 - Easier to maintain compared to Microservices considering theres only one codebase. 
 - Modules are group based on intent and not technical layers.
+
 **DDD:** 
 - Domains that take control of the correctness instead of relying on Services. 
 - Domain takes care of business rules and invariants. 
 - Supporting entities are fashioned as Value Objects.
+
 **VSA:** 
 - Orchestration based on actions. 
 - Functionality based on use-case. 
@@ -26,26 +28,32 @@
 ## 3. Module Decomposition
 **ProcurementModule:** 
 - Owns Purchase Request(PR) & Purchase Order(PO). 
-- Handles PR->PO pregression. Implements Workflows and Approval.
+- Handles PR->PO pregression. 
+- Implements Workflows and Approval.
+
 **ReceivingModule:** 
 - Takes care of GRN. 
 - Acknowledges the product reception. 
 - Happens after PO is done. 
 - Does not manage Inventory.
+
 **SupplierManagement:** 
 - Handles the Suppliers data for items for Procurement. 
-- For data keeping .
+- For data keeping.
+
 **Administration:** 
 - System level configurations. 
 - Includes Dashboard and system visibility. 
 - Devoid of business rules. 
 - For data keeping.
 - Owns Tenant.
+
 **Identity and Access:** 
 - Implements JWT for Authentication. 
 - Authorization is role-based. 
 - System wide. 
 - Uses roles/claims.
+
 **Auditing and History:** 
 - Produces summaries of transactions. 
 - Highly flexible and is achored by requests and queries. 
@@ -68,19 +76,23 @@ Application
 - Provided by JWT tokens. 
 - Required for every API calls. 
 - Validate Tenant context.
+
 **Authorization:** 
 - Role-based Access Control. 
 - Effective on the Domain level. 
 - Can be fused with JWT via roles/claims
+
 **Validation and Error Handling:** 
 - Deploys the Result<T> for returning Domain and Validation/Generic errors. 
 - Use extension class for handling API returns. 
 - Use middleware for exceptions handling. 
 - Ensures consistent error response.
+
 **Auditing:** 
 - Summaries of purchases done and approval flows mainly. 
 - Supports visibility, traceability and reporting. 
 - May expand to include summaries of other relatable query like Active/Inactive Employees.   
+
 **Unit Testing:** 
 - Unit tests based on behaviours and business rules. 
 - Mimics BDD mindset closest possible
