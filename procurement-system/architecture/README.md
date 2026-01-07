@@ -9,20 +9,29 @@
 
 ---
 ## 2. Style & Principles
-**Modular Monolith:** Well-defined isolated modules that wont break the cohesiveness while keeping tight coupling at bay.
+**Modular Monolith:** 
+- Well-defined isolated modules that wont break the cohesiveness while keeping tight coupling at bay.
 Easier to maintain compared to Microservices considering theres only one codebase. Modules are group based on intent and not technical layers.
-**DDD:** Domains that take control of the correctness instead of relying on Services. Domain takes care of business rules and invariants.
+**DDD:** 
+- Domains that take control of the correctness instead of relying on Services. Domain takes care of business rules and invariants.
 Supporting entities are fashioned as Value Objects.
-**VSA:** Orchestration based on actions. Functionality based on use-case. Avoid large shared service class
+**VSA:** 
+- Orchestration based on actions. Functionality based on use-case. Avoid large shared service class
 
 ---
 ## 3. Module Decomposition
-**ProcurementModule:** Owns Purchase Request(PR) & Purchase Order(PO). Handles PR->PO pregression. Implements Workflows and Approval.
-**ReceivingModule:** Takes care of GRN. Acknowledges the product reception. Happens after PO is done. Does not manage Inventory.
-**SupplierManagement:** Handles the Suppliers data for items for Procurement. For data keeping .
-**Administration:** System level configurations. Includes Dashboard and system visibility. Devoid of business rules. For data keeping.
-**Identity and Access:** Implements JWT for Authentication. Authorization is role-based. System wide. Owns Tenant
-**Auditing and History:** Produces summaries of transactions. Highly flexible and is achored by requests and queries. Readonly. 
+**ProcurementModule:** 
+Owns Purchase Request(PR) & Purchase Order(PO). Handles PR->PO pregression. Implements Workflows and Approval.
+**ReceivingModule:** 
+Takes care of GRN. Acknowledges the product reception. Happens after PO is done. Does not manage Inventory.
+**SupplierManagement:** 
+Handles the Suppliers data for items for Procurement. For data keeping .
+**Administration:** 
+System level configurations. Includes Dashboard and system visibility. Devoid of business rules. For data keeping.
+**Identity and Access:** 
+Implements JWT for Authentication. Authorization is role-based. System wide. Owns Tenant
+**Auditing and History:** 
+Produces summaries of transactions. Highly flexible and is achored by requests and queries. Readonly. 
 
 ---
 ## 4. Module Boundaries & Interaction
@@ -37,8 +46,10 @@ Application
 
 ---
 ## 6. Cross-cutting Concerns
-**Authentication:** Provided by JWT tokens. Required for every API calls. Validate Tenant context.
-**Authorization:** Role-based Access Control. Effective on the Domain level. Can be fused with JWT via roles/claims
+**Authentication:** 
+Provided by JWT tokens. Required for every API calls. Validate Tenant context.
+**Authorization:** 
+Role-based Access Control. Effective on the Domain level. Can be fused with JWT via roles/claims
 **Validation and Error Handling:** Deploys the Result<T> for returning Domain and Validation/Generic errors. 
 Use extension class for handling API returns. Use middleware for exceptions handling. Ensure consistent error response.
 **Auditing:** Summaries of purchases done and approval flows mainly. Supports visibility, traceability and reporting. 
@@ -55,7 +66,8 @@ database (can be handled with Options Pattern)
 ## 8. Deployment & Runtime Model
 App is published as a single deployable unit and then deployed to Azure App Service. Database is hosted by NeonTech and accessed by EF Core.
 Deployment is kept simple to focus on application and domain design.
-**Things to consider:** Database per Tenant vs Single database with Tenant-scoping
+**Things to consider:** 
+Database per Tenant vs Single database with Tenant-scoping
 
 ---
 ## 9. Out-of-Scope
