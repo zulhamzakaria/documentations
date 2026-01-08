@@ -1,11 +1,11 @@
 # Procurement System Domain
 
-##1. Purpose and Scope
+## 1. Purpose and Scope
 Core business domains (entities, VOs, aggregates, policies), rules and behaviours, workflows, correctness. 
 Limited to back-end only. Subject to changes as the project evolves
 
 ---
-##2. Bounded Contexts
+## 2. Bounded Contexts
 - **Procurement (PR/PO)**
 - **Receiving (GRN)**
 - **Administration**
@@ -13,7 +13,7 @@ Limited to back-end only. Subject to changes as the project evolves
 - **Identity & Access**
 
 ---
-##3. Procurement Domain
+## 3. Procurement Domain
 **Aggregates**
 	1. Purchase Request (Root)
 		- Intent: For purchasing items
@@ -68,7 +68,7 @@ Limited to back-end only. Subject to changes as the project evolves
 Generate POs?
 
 ---
-##3. Receiving Domain
+## 4. Receiving Domain
 **Aggregate**
 	1. GRN
 		- Intent: For confirming orders reception
@@ -77,7 +77,7 @@ Generate POs?
 			* Quantity should match
 			
 ---
-##4. Supplier Management Domain 
+## 5. Supplier Management Domain 
 **Aggregate**
 	1. Supplier
 		- Intent: Storing approved vendors
@@ -90,7 +90,7 @@ Generate POs?
 			* Only active Suppliers can be referenced
 						
 ---
-##5. Administration Domain 
+## 6. Administration Domain 
 **Aggregate**
 	1. Workflow Policy
 		- Intent: Storing linear approvals workflows for PR/PO
@@ -106,20 +106,20 @@ Generate POs?
 			* Status
 			
 ---
-##6. Identity and Access
+## 7. Identity and Access
 Authentication is handled by JWT. Authorization is role/claim-based. Tenant is for SaaS scoping
 			
 ---
-##7. Cross Domain Rules
+## 8. Cross Domain Rules
 TenantId is required accross all aggregates. Aggregates are contained inside the bounded context. 
 Interaction between aggregates are done thru interfaces
 			
 ---
-##8. Testing Considerations
+## 9. Testing Considerations
 Validates domain behaviours in state transitions, policy enforcements, and invariants. 
 			
 ---
-##8. Design Decisions
+## 10. Design Decisions
 Linear workflow for simplicity. VOs over primitive obsession. Aggregates define correctness. Actions orchestrate.
 
 
