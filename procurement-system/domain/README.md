@@ -15,13 +15,13 @@ Limited to back-end only. Subject to changes as the project evolves
 ---
 ## 3. Procurement Domain
 **Aggregates**
-	1. Purchase Request (Root)
-		- Intent: For purchasing items
-		- Flow: Request -> Submitted -> Approved/Rejected
-		- Invariants:
-			* Must have one PR item
-			* Positive total amount
-			* Must follow approval flow		
+1. Purchase Request (Root)
+	- Intent: For purchasing items
+	- Flow: Request -> Submitted -> Approved/Rejected
+	- Invariants:
+		* Must have one PR item
+		* Positive total amount
+		* Must follow approval flow		
 	2. Purchase Order (Root)
 		- Intent: Represents a confirmed order
 		- Flow: Created -> Approved -> Issued -> Closed
